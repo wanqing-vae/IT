@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Servlet</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 18px;
+  color:red;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+<style type="text/css">
+.highlight  { background: #ffffff; }
+.highlight .c { color: #999988; font-style: italic } /* Comment */
+.highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.highlight .k { font-weight: bold } /* Keyword */
+.highlight .o { font-weight: bold } /* Operator */
+.highlight .cm { color: #999988; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #999999; font-weight: bold } /* Comment.Preproc */
+.highlight .c1 { color: #999988; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+.highlight .gd .x { color: #000000; background-color: #ffaaaa } /* Generic.Deleted.Specific */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #aa0000 } /* Generic.Error */
+.highlight .gh { color: #999999 } /* Generic.Heading */
+.highlight .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+.highlight .gi .x { color: #000000; background-color: #aaffaa } /* Generic.Inserted.Specific */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #555555 } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #aaaaaa } /* Generic.Subheading */
+.highlight .gt { color: #aa0000 } /* Generic.Traceback */
+.highlight .kc { font-weight: bold } /* Keyword.Constant */
+.highlight .kd { font-weight: bold } /* Keyword.Declaration */
+.highlight .kp { font-weight: bold } /* Keyword.Pseudo */
+.highlight .kr { font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #445588; font-weight: bold } /* Keyword.Type */
+.highlight .m { color: #009999 } /* Literal.Number */
+.highlight .s { color: #d14 } /* Literal.String */
+.highlight .na { color: #008080 } /* Name.Attribute */
+.highlight .nb { color: #0086B3 } /* Name.Builtin */
+.highlight .nc { color: #445588; font-weight: bold } /* Name.Class */
+.highlight .no { color: #008080 } /* Name.Constant */
+.highlight .ni { color: #800080 } /* Name.Entity */
+.highlight .ne { color: #990000; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #990000; font-weight: bold } /* Name.Function */
+.highlight .nn { color: #555555 } /* Name.Namespace */
+.highlight .nt { color: #000080 } /* Name.Tag */
+.highlight .nv { color: #008080 } /* Name.Variable */
+.highlight .ow { font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #009999 } /* Literal.Number.Float */
+.highlight .mh { color: #009999 } /* Literal.Number.Hex */
+.highlight .mi { color: #009999 } /* Literal.Number.Integer */
+.highlight .mo { color: #009999 } /* Literal.Number.Oct */
+.highlight .sb { color: #d14 } /* Literal.String.Backtick */
+.highlight .sc { color: #d14 } /* Literal.String.Char */
+.highlight .sd { color: #d14 } /* Literal.String.Doc */
+.highlight .s2 { color: #d14 } /* Literal.String.Double */
+.highlight .se { color: #d14 } /* Literal.String.Escape */
+.highlight .sh { color: #d14 } /* Literal.String.Heredoc */
+.highlight .si { color: #d14 } /* Literal.String.Interpol */
+.highlight .sx { color: #d14 } /* Literal.String.Other */
+.highlight .sr { color: #009926 } /* Literal.String.Regex */
+.highlight .s1 { color: #d14 } /* Literal.String.Single */
+.highlight .ss { color: #990073 } /* Literal.String.Symbol */
+.highlight .bp { color: #999999 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #008080 } /* Name.Variable.Class */
+.highlight .vg { color: #008080 } /* Name.Variable.Global */
+.highlight .vi { color: #008080 } /* Name.Variable.Instance */
+.highlight .il { color: #009999 } /* Literal.Number.Integer.Long */
+.pl-c {
+    color: #969896;
+}
+
+.pl-c1,.pl-mdh,.pl-mm,.pl-mp,.pl-mr,.pl-s1 .pl-v,.pl-s3,.pl-sc,.pl-sv {
+    color: #0086b3;
+}
+
+.pl-e,.pl-en {
+    color: #795da3;
+}
+
+.pl-s1 .pl-s2,.pl-smi,.pl-smp,.pl-stj,.pl-vo,.pl-vpf {
+    color: #333;
+}
+
+.pl-ent {
+    color: #63a35c;
+}
+
+.pl-k,.pl-s,.pl-st {
+    color: #a71d5d;
+}
+
+.pl-pds,.pl-s1,.pl-s1 .pl-pse .pl-s2,.pl-sr,.pl-sr .pl-cce,.pl-sr .pl-sra,.pl-sr .pl-sre,.pl-src,.pl-v {
+    color: #df5000;
+}
+
+.pl-id {
+    color: #b52a1d;
+}
+
+.pl-ii {
+    background-color: #b52a1d;
+    color: #f8f8f8;
+}
+
+.pl-sr .pl-cce {
+    color: #63a35c;
+    font-weight: bold;
+}
+
+.pl-ml {
+    color: #693a17;
+}
+
+.pl-mh,.pl-mh .pl-en,.pl-ms {
+    color: #1d3e81;
+    font-weight: bold;
+}
+
+.pl-mq {
+    color: #008080;
+}
+
+.pl-mi {
+    color: #333;
+    font-style: italic;
+}
+
+.pl-mb {
+    color: #333;
+    font-weight: bold;
+}
+
+.pl-md,.pl-mdhf {
+    background-color: #ffecec;
+    color: #bd2c00;
+}
+
+.pl-mdht,.pl-mi1 {
+    background-color: #eaffea;
+    color: #55a532;
+}
+
+.pl-mdr {
+    color: #795da3;
+    font-weight: bold;
+}
+
+.pl-mo {
+    color: #1d3e81;
+}
+.task-list {
+padding-left:10px;
+margin-bottom:0;
+}
+
+.task-list li {
+    margin-left: 20px;
+}
+
+.task-list-item {
+list-style-type:none;
+padding-left:10px;
+}
+
+.task-list-item label {
+font-weight:400;
+}
+
+.task-list-item.enabled label {
+cursor:pointer;
+}
+
+.task-list-item+.task-list-item {
+margin-top:3px;
+}
+
+.task-list-item-checkbox {
+display:inline-block;
+margin-left:-20px;
+margin-right:3px;
+vertical-align:1px;
+}
+</style>
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-control" content="no-cache">
+<meta http-equiv="Cache" content="no-cache">
+
+<link href="http://cdn.bootcss.com/highlight.js/8.0/styles/vs.min.css" rel="stylesheet">
+
+<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>  
+
+<script >hljs.initHighlightingOnLoad();</script> 
+
+<script type = "text/javascript" > 
+//create content
+document.addEventListener("DOMContentLoaded", function()
+{
+    toTop();//置顶
+
+    var div1            = document.createElement("div");
+    div1.style.cssText  = "clear:both";
+
+    // create TOC list
+    var outline         = document.createElement("div");
+    outline.setAttribute("id", "outline-list");
+    outline.style.cssText = "border:solid 1px #ccc; background:#eee; min-width:200px;padding:4px 10px;";
+
+    var ele_p           = document.createElement("p");
+    ele_p.style.cssText = "text-align: left; margin: 0;";
+    outline.appendChild(ele_p);
+
+    var ele_span        = document.createElement("span");
+
+    // ele_span.style.cssText = "float: left;";
+    var ele_text        = document.createTextNode("目录");
+    ele_span.appendChild(ele_text);
+
+    var ele_a           = document.createElement("a");
+    ele_a.appendChild(document.createTextNode("[+]"));
+    ele_a.setAttribute("href", "#");
+    ele_a.setAttribute("onclick", "javascript:return openct(this);");
+    ele_a.setAttribute("title", "Click to Open 目录");
+
+    ele_span.appendChild(ele_a);
+    ele_p.appendChild(ele_span);
+
+    var ul_top          = document.createElement("ul"); // 顶级
+    ul_top.style.cssText = "display:none;margin-left:14px;padding-left:14px;line-height:160%;";
+    ul_top.setAttribute("id", "outline_ol");
+    outline.appendChild(ul_top);
+    var div1            = document.createElement("div");
+    div1.style.cssText  = "clear:both";
+
+    document.body.insertBefore(outline, document.body.childNodes[0]);
+
+    // get all the headlines
+    var headers         = document.querySelectorAll('h1,h2,h3,h4,h5,h6');
+
+    if (headers.length < 2)
+        return;
+
+
+    var old_h = 1;
+
+    var ul_array = new Array(7);
+    var ul_current = null;
+    ul_array[1] = ul_top;
+
+    for (var i = 0; i < headers.length; i++)
+    {
+        // get H* and prepare for the ordered list 
+        var header = headers[i];
+
+        //header.setAttribute("id", "t" + i + header.tagName);
+        header.setAttribute("id", header.textContent);
+        var h = parseInt(header.tagName.substr(1), 10);
+
+        // assert  1<=h && h <= 6
+
+        ul_current = 0;
+        if (h < old_h)
+        {
+            for (var j = h+1; j <= 6; j++)
+            {
+                ul_array[j] = null;
+            }
+            ul_current = h;
+        }
+        else if (h == old_h)
+        {
+            ul_current = h;
+        }
+        else if (h > old_h)
+        {
+            ul_current = old_h + 1; /* 是old_h + 1的原因： h如果是old_h + 2 或者 + 3时，
+                                        我们依然按 + 1来做 */
+        }
+
+        if (ul_array[ul_current] == null)
+        {
+            ul_array[ul_current] = document.createElement("ul");
+            if (h>1)
+            {
+                ul_array[h-1].lastChild.appendChild(ul_array[ul_current]);
+            }
+        }
+
+        var elem_li = document.createElement("li");
+        ul_array[ul_current].appendChild(elem_li);
+
+        var a = document.createElement("a");
+
+        // set href for the TOC item 
+        //a.setAttribute("href", "#t" + i + header.tagName);
+        a.setAttribute("href", "#" + header.textContent);
+
+        // TOC item text
+        //a.innerHTML  = "h" + h + header.textContent;
+        a.innerHTML  = header.textContent;
+
+
+        elem_li.appendChild(a);
+
+        old_h = h;
+    }
+});
+function toTop(){
+    var toTop           = document.createElement("div");
+    toTop.style.cssText = "position:fixed;bottom:10px;right:10px;width:20x;height:20px;background:gray;padding:5px;";
+    toTop.innerHTML="^"
+    toTop.setAttribute("id", "toTop");
+    toTop.setAttribute("title", "to top");
+    document.body.insertBefore(toTop, document.body.childNodes[0]);
+
+    // 获取置顶对象
+    var obj = document.getElementById('toTop');
+
+    // 置顶对象点击事件
+    obj.onclick = function() {
+        var timer = setInterval(function() {
+            window.scrollBy(0, -500);
+            if(document.documentElement && document.documentElement.scrollTop) //IE
+            {
+                if(document.documentElement.scrollTop<=0){
+                    clearInterval(timer);
+                }else{
+                    window.scrollBy(0,-500);
+                }
+            }else{ //Chrome不支持documentElement.scrollTop
+                if(document.body.scrollTop<=0){
+                    clearInterval(timer);
+                }else{
+                    window.scrollBy(0,-500);
+                }
+                if (document.body.scrollTop == 0) {
+                    clearInterval(timer);
+                };
+            }
+        }, 2);
+    }
+
+    // 窗口滚动检测
+    //window.onscroll = function() {
+    //    obj.style.display = (document.body.scrollTop >= 300) ? "block" : "none";
+    //}
+}
+// 
+function openct(e)
+{
+    if (e.innerHTML == '[+]')
+    {
+        // createTextNode
+        e.setAttribute('title', 'collapse');
+        e.innerHTML         = '[-]';
+        var             element = document.getElementById("outline_ol");
+
+        element.style.cssText = "margin-left:14px;padding-left:14px;line-height:160%;";
+    }
+    else 
+    {
+        e.setAttribute('title', 'expand');
+        e.innerHTML         = '[+]';
+        var             element = document.getElementById("outline_ol");
+
+        element.style.cssText = "display:none;margin-left:14px;padding-left:14px;line-height:160%;";
+    }
+
+    e.blur();
+    return false;
+}
+
+
+</script>
+
+</head>
+<body>
+<h1 id="1-servlet">1.什么是servlet</h1>
+<p>   servlet是javaweb的三大组件之一，它属于动态资源。servlet的作用是处理请求，<br>   服务器会把接收到的请求交给servlet来处理<br>   在servlet中通常需要：<br>           接收请求数据<br>           处理请求<br>           完成响应<br>           例如客户端发出登录请求，或者输出注册请求，这些请求都应该由servlet来完成处理！<br>           servlet需要我们自己来编写，每个servlet必须实现javax.servlet.Servlet接口。<br>     javaweb三大组件为（Servlet,Filter,Listener）<br>servlet功能图：<br><img src="https://wx2.sinaimg.cn/mw1024/0077Gv1hgy1gh6qm14ykzj30w50dumyt.jpg" alt=""></p>
+<h1 id="2-servlet-">2.实现servlet的方法（有我们自己来写）</h1>
+<p>实现servlet有三种方式：</p>
+<h2 id="1-javax-servlet-servlet-">1.实现javax.servlet.Servlet接口：</h2>
+<pre><code>   public class Aservlet implements Servlet {
+/*
+ * 它是servlet生命周期方法，它会在servlet被销毁之前调用，并且它只会被调用一次（临死之前，遗言的方法）
+ * 服务器关闭时调用
+ * @see javax.servlet.Servlet#destroy()
+ */
+    @Override
+    public void destroy() {
+
+    }
+/*
+ * 可以用来获取servlet配置信息
+ * @see javax.servlet.Servlet#getServletConfig()
+ */
+    @Override
+    public ServletConfig getServletConfig() {
+        return null;
+    }
+/*
+ * 获取servlet信息（基本不用）
+ * @see javax.servlet.Servlet#getServletInfo()
+ */
+    @Override
+    public String getServletInfo() {
+        return null;
+    }
+/*
+ * 它是servlet生命周期方法，在被tomcat（服务器）创建servlet对象之后马上执行！（出生之后调用）
+ * 他在第一次被访问时被创建，即被调用
+ * @see javax.servlet.Servlet#init(javax.servlet.ServletConfig)
+ */
+    @Override
+    public void init(ServletConfig servletConfig) throws ServletException {
+    System.out.println(&quot;init()...&quot;);
+    /*
+     * 获取初始化参数
+     */
+    System.out.println(servletConfig.getInitParameter(&quot;p1&quot;));
+    System.out.println(servletConfig.getInitParameter(&quot;p2&quot;));
+    /*
+     * 获取初始化名称
+     */
+    Enumeration enumeration=servletConfig.getInitParameterNames();
+    while (enumeration.hasMoreElements()) {
+        System.out.println(enumeration.nextElement());
+        }
+
+    }
+/*
+ * 它是生命周期方法，他会被调用多次，每次处理请求时都会被调用
+ * @see javax.servlet.Servlet#service(javax.servlet.ServletRequest, javax.servlet.ServletResponse)
+ */
+    @Override
+    public void service(ServletRequest arg0, ServletResponse servletResponse) throws ServletException, IOException {
+
+    }
+
+}
+</code></pre><p>结果：<br><img src="https://wx4.sinaimg.cn/mw1024/0077Gv1hgy1gh6zwp9kvnj30wa06bmxb.jpg" alt=""></p>
+<h2 id="2-javax-servlet-genericsrevlet-">2.继承javax.servlet.GenericSrevlet类：</h2>
+<p>创建一个Bservlet来模拟GenericServlet类：</p>
+<pre><code>public class Bservlet implements Servlet {
+private ServletConfig config;
+/*
+ * 需要就写，不需要就不写
+ * @see javax.servlet.Servlet#destroy()
+ */
+@Override
+public void destroy() {
+
+
+}
+
+@Override
+public ServletConfig getServletConfig() {
+    return config;
+}
+/*
+ * 无用的方法
+* @see javax.servlet.Servlet#getServletInfo()
+ */
+@Override
+public String getServletInfo() {
+    return null;
+}
+/*
+ * 首先执行的生命周期方法，在创建对象之后就被调用
+ * @see javax.servlet.Servlet#init(javax.servlet.ServletConfig)
+ */
+@Override
+public void init(ServletConfig config) throws ServletException {
+    this.config=config;
+    init();
+
+}
+public void init() {
+
+}
+/*
+ * 每次处理请求时调用
+ * @see javax.servlet.Servlet#service(javax.servlet.ServletRequest, javax.servlet.ServletResponse)
+ */
+@Override
+public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+    System.out.println(&quot;每次处理请求时调用&quot;);
+}
+public ServletContext servletContext() {
+    return config.getServletContext();
+}
+public String getserletName() {
+    return config.getServletName();
+
+}
+public String getInitparameter(String name) {
+    return config.getInitParameter(name);
+}
+}
+</code></pre><p>然后再创建一个Cservlet去继承实现GenericServlet的效果：</p>
+<pre><code> public class Cservlet extends Bservlet {
+@Override
+public void init() {
+    System.out.println(&quot;出生了&quot;);
+}
+@Override
+public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+    String value=getInitparameter(&quot;p1&quot;);
+    System.out.println(value);
+}
+}
+</code></pre><p>如果字类继承了GenericServlet，就可以直接的调用GenericServlet中的方法</p>
+<pre><code> public class Dservlet extends GenericServlet {
+
+@Override
+public void init() throws ServletException {
+    System.out.println(&quot;出生了&quot;);
+}
+
+@Override
+public void service(ServletRequest arg0, ServletResponse arg1) throws ServletException, IOException {
+    String value=getInitParameter(&quot;p1&quot;);
+    System.out.println(value);
+
+}
+}
+</code></pre><h2 id="3-javax-servlet-http-httpservlet-">3.继承javax.servlet.http.HttpServlet类（用的最多）：</h2>
+<p>通常我们会去继承HttpServlet类来完成我们的servlet！<br>HttpServlet原理图<br><img src="https://wx3.sinaimg.cn/mw1024/0077Gv1hgy1gh7yr1ftl7j30ro0gcad8.jpg" alt=""><br>HttpServlet时序图<br><img src="https://wx3.sinaimg.cn/mw1024/0077Gv1hgy1gh7yt080jdj30xv0gx0u7.jpg" alt=""></p>
+<h3 id="1-httpservlet-">1.对HttpServlet的演示</h3>
+<p>首先再下web.xml配置文件中加入Eservlet配置信息用来演示Httpservlet的效果</p>
+<pre><code> &lt;servlet-name&gt;Eservlet&lt;/servlet-name&gt;
+  &lt;servlet-class&gt;cn.itwanqing.web.servlet.Eservlet&lt;/servlet-class&gt;
+  &lt;/servlet&gt;
+  &lt;servlet-mapping&gt;
+  &lt;servlet-name&gt;Eservlet&lt;/servlet-name&gt;
+  &lt;url-pattern&gt;/Eservlet&lt;/url-pattern&gt;
+ &lt;/servlet-mapping&gt;
+</code></pre><p>然后再创建一个Eservlet来重写doGet()方法和doPost()方法</p>
+<pre><code> public class Eservlet extends HttpServlet {
+@Override
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    response.setCharacterEncoding(&quot;utf-8&quot;);
+    response.getWriter().write(&quot;这是doGet()方法....&quot;);
+}
+@Override
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    response.setCharacterEncoding(&quot;utf-8&quot;);
+    response.getWriter().write(&quot;这是doPost()方法....&quot;);
+}
+}
+</code></pre><p>在地址栏里输入路径测试doGet()方法<br><img src="https://wx1.sinaimg.cn/mw1024/0077Gv1hgy1gh806pqwoqj30im04mmxc.jpg" alt=""><br>通过页面表单测试doPost()方法，创建一个html文件</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+这是doPost方法
+&lt;!-- action中的格式，首先加个/，然后在输入项目名，最后在输入再web.xml中的路径
+ 例如此次的为：/day09_servlet/Eservlet --&gt;
+&lt;form action=&quot;/day09_servlet/Eservlet&quot; method=&quot;post&quot;&gt;
+&lt;input type=&quot;submit&quot; name=&quot;提交&quot;&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>点击提交<br><img src="https://wx4.sinaimg.cn/mw1024/0077Gv1hgy1gh80fauzyzj30iu07tjs0.jpg" alt=""></p>
+<h3 id="2-eclipse-servlet">2.通过eclipse直接创建servlet</h3>
+<pre><code>/**
+ * Servlet implementation class Fservlet
+ */
+@WebServlet(&quot;/Fservlet&quot;)
+/*
+ * 这是Servlet3.0新特性(得Tomcat7.0版本及以上)，@WebServlet 用于将一个类声明为 Servlet，
+ * 该注解将会在部署时被容器处理，容器将根据具体的属性配置将相应的类部署为 Servlet。
+ * Eclipse不会自动在web.xml中生成该Servlet对应的mapping信息，而是在Servlet代码中加入注解@WebServlet
+ */
+public class Fservlet extends HttpServlet {
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.getWriter().write(&quot;Fservlet&quot;);
+    }
+
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        doGet(request, response);
+    }
+}
+</code></pre><h3 id="3-tomcat-servlet">3.在tomcat启动的时候创建servlet</h3>
+<p>在servlet配置中添加<code>&lt;load-on-startup&gt;非负整数&lt;/load-on-startup&gt;</code>，servlet会在<br>tomcat启动的时候创建，不是在第一次请求的时候创建，这个非负整数代表启动的优先级，0<br>代表优先级最高。随着数字增大，优先级越小。</p>
+<pre><code>&lt;servlet&gt;
+ &lt;servlet-name&gt;Eservlet&lt;/servlet-name&gt;
+ &lt;servlet-class&gt;cn.itwanqing.web.servlet.Eservlet&lt;/servlet-class&gt;
+ &lt;load-on-startup&gt;0&lt;/load-on-startup&gt;
+&lt;/servlet&gt;
+&lt;servlet-mapping&gt;
+ &lt;servlet-name&gt;Eservlet&lt;/servlet-name&gt;
+ &lt;url-pattern&gt;/Eservlet&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+</code></pre><h1 id="3-servlet">3.如何让浏览器访问servlet</h1>
+<pre><code> 1.给servlet一个指定的servlet路径（让servlet和一个路径绑定在一起）
+ 2.浏览器访问servlet路径
+
+  给servlet配置servlet路径
+  这需要在web.xml中对servlet进行配置
+  web.xml中
+      &lt;servlet&gt;
+        &lt;servlet-name&gt;Aservlet&lt;/servlet-name&gt;
+        &lt;servlet-class&gt;cn.itwanqing.web.Aservlet&lt;/servlet-class&gt;
+      &lt;/servlet&gt;
+
+      &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;Aservlet&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;/Aservlet&lt;/url-pattern&gt;
+      &lt;/servlet-mapping&gt;
+
+  3.ServletConfig配置信息：
+  &lt;servlet&gt;
+
+    &lt;servlet-name&gt;Aservlet&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;cn.itwanqing.web.servlet.Aservlet&lt;/servlet-class&gt;
+
+    &lt;init-param&gt;
+      &lt;param-name&gt;p1&lt;/param-name&gt;
+      &lt;param-value&gt;v1&lt;/param-value&gt;
+    &lt;/init-param&gt;
+
+    &lt;init-param&gt;
+      &lt;param-name&gt;p2&lt;/param-name&gt;
+      &lt;param-value&gt;v2&lt;/param-value&gt;
+    &lt;/init-param&gt;
+
+  &lt;/servlet&gt;
+</code></pre><h1 id="4-servlet-servlet-">4.servlet生命周期方法：（servlet有五个方法，由三个生命周期方法）</h1>
+<pre><code>void init (servletConfig):出生之后（1次）；
+void service（servletRequest request,servletResponse response）:每次处理请求时都会被调用
+void destroy（）：临死之前（1次）；
+</code></pre><h1 id="5-">5.特性：</h1>
+<pre><code> 单例，一个类只有一个对象；当然可能存在多个servlet类
+ 线程不安全的，所以它的效率是高的
+ servlet类由我们来写，但对象由服务器创建，并且由服务器来调用相应的方法。
+</code></pre><h1 id="6-servletconfig-">6.servletConfig的介绍</h1>
+<p>它是一个接口<br><img src="https://wx3.sinaimg.cn/large/0077Gv1hgy1gh6z3alfqaj311e0fpwh9.jpg" alt=""></p>
+<h1 id="7-servletcontext-">7.servletContext（域对象）</h1>
+<p><img src="https://wx3.sinaimg.cn/mw1024/0077Gv1hgy1gh92fy3o61j30ur0e6q7z.jpg" alt=""><br>   一个项目只有一个servletContext对象<br>   作用：我们可以在N多个servlet中来获取这个唯一的对象，使用它可以给多个servlet传递数据！<br>   可以通过它完成共享数据<br>   特性：与天地同寿！！：这个对象在tomcat创建时就创建，在tomcat关闭时才会死去。<br>   获取servletcontext<br>     1.servletConfig #getservletContext();<br>     2.GenericSrevlet #getservletContext();<br>     3.Httpsession #getservletContext();<br>     4.servletContextEvent #getservletContext();</p>
+<h2 id="1-servletcontext-">1.实现ServletContext的读取数据的操作</h2>
+<p>先创建一个Aservlet用来存储数据</p>
+<pre><code> /**
+ * Servlet implementation class Aservlet
+ * 用ServletContext存数据
+ */
+@WebServlet(&quot;/Aservlet&quot;)
+public class Aservlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ServletContext servletContext=this.getServletContext();
+        servletContext.setAttribute(&quot;wanqing&quot;, &quot;wanqing77&quot;);//保存数据
+    }
+}
+</code></pre><p>然后再创建一个Bservlet读数据</p>
+<pre><code> /**
+ * Servlet implementation class Bservlet
+ * 用ServletContext读数据
+ */
+@WebServlet(&quot;/Bservlet&quot;)
+public class Bservlet extends HttpServlet {
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ServletContext context=this.getServletContext();
+        String value=(String) context.getAttribute(&quot;wanqing&quot;);
+        System.out.println(value);
+    }
+
+}
+</code></pre><h2 id="2-">2.获取公共的初始化参数</h2>
+<p>servlet也能获取初始化参数，但是它是局部的参数，与就是说，一个servlet只能获取自己的初始化参数，不能获取别人的。<br>可以配置公共的初始化参数，为所有servlet所用，需要使用ServletContext才能使用<br>还可以使用ServletContext来获取再web.xml文件中的配置应用初始化参数，应用初始化参数和servlet初始化参数不同，在web.xml中：</p>
+<pre><code>&lt;context-param&gt;
+   &lt;param-name&gt;wanqing&lt;/param-name&gt;
+   &lt;param-value&gt;wanqing77&lt;/param-value&gt;
+&lt;/context-param&gt;
+</code></pre><p>然后创建一个Cservlet来获取这个初始化参数</p>
+<pre><code>/**
+ * Servlet implementation class Cservlet
+ * 用ServletContext来获取web.xml文件中的参数
+ */
+@WebServlet(&quot;/Cservlet&quot;)
+public class Cservlet extends HttpServlet {
+
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    ServletContext context=this.getServletContext();
+    String value=context.getInitParameter(&quot;wanqing&quot;);
+    response.getWriter().write(value);
+    }
+
+}
+</code></pre><h2 id="3-servletcontext-">3.用ServletContext获取资源路径</h2>
+<pre><code> /**
+ * Servlet implementation class Dservlet
+ * 用ServletContext获取资源路径
+ */
+@WebServlet(&quot;/Dservlet&quot;)
+public class Dservlet extends HttpServlet {
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     * getRealPath:获取带有盘符的路径，如F:/xxx/xxx/xxx
+     * C:\Users\79191\eclipse-workspace\apache-tomcat-8.5.13\wtpwebapps\day09_ServletContext\index.jsp
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String path=this.getServletContext().getRealPath(&quot;/index.jsp&quot;);
+        System.out.println(path);
+        //获取资源的路径后，在创建输入流对象
+        InputStream iStream=this.getServletContext().getResourceAsStream(&quot;/index.jsp&quot;);
+
+        //获取当前路径下所有资源的路径
+        Set&lt;String&gt;pt=this.getServletContext().getResourcePaths(&quot;/WEB-INF&quot;);
+        System.out.println(pt);
+    }
+
+}
+</code></pre><h2 id="4-">4.获取类路径下的资源</h2>
+<pre><code>  /**
+ * Servlet implementation class Aservlet
+ * 获取类路径下的资源
+ */
+@WebServlet(&quot;/Aservlet&quot;)
+public class Aservlet extends HttpServlet {
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /*
+         * 用classLoader
+         * 1.得到class，在得到classLoader
+         * 2.再调用getResourceAsStream(),得到inputStream
+         */
+//        ClassLoader classLoader=this.getClass().getClassLoader();
+//        //classLoader相对于的是/classes
+//        InputStream inputStream= classLoader.getResourceAsStream(&quot;a.txt&quot;);
+//        String aString=IOUtils.toString(inputStream);
+//        //用commons-io-27.jar中的ioutils将流对象转换成string
+//        System.out.println(aString);
+
+        /*
+         * 用class
+         * 
+         */
+//        Class class1=this.getClass();
+//        //相对于当前的.class文件所在的目录
+//        //InputStream inputStream= class1.getResourceAsStream(&quot;b.txt&quot;);
+//        
+//        //加了/相对于classes下
+//        InputStream inputStream=class1.getResourceAsStream(&quot;/a.txt&quot;);
+//        String string=IOUtils.toString(inputStream);
+//        System.out.println(string);
+
+
+        //获取index.jsp的内容
+        Class class1=this.getClass();
+        InputStream inputStream= class1.getResourceAsStream(&quot;/../../index.jsp&quot;);
+        String string =IOUtils.toString(inputStream);
+        System.out.println(string);
+
+
+    }
+
+}
+</code></pre>
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
