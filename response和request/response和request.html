@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>response和request</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 18px;
+  color:red;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+<style type="text/css">
+.highlight  { background: #ffffff; }
+.highlight .c { color: #999988; font-style: italic } /* Comment */
+.highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.highlight .k { font-weight: bold } /* Keyword */
+.highlight .o { font-weight: bold } /* Operator */
+.highlight .cm { color: #999988; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #999999; font-weight: bold } /* Comment.Preproc */
+.highlight .c1 { color: #999988; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+.highlight .gd .x { color: #000000; background-color: #ffaaaa } /* Generic.Deleted.Specific */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #aa0000 } /* Generic.Error */
+.highlight .gh { color: #999999 } /* Generic.Heading */
+.highlight .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+.highlight .gi .x { color: #000000; background-color: #aaffaa } /* Generic.Inserted.Specific */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #555555 } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #aaaaaa } /* Generic.Subheading */
+.highlight .gt { color: #aa0000 } /* Generic.Traceback */
+.highlight .kc { font-weight: bold } /* Keyword.Constant */
+.highlight .kd { font-weight: bold } /* Keyword.Declaration */
+.highlight .kp { font-weight: bold } /* Keyword.Pseudo */
+.highlight .kr { font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #445588; font-weight: bold } /* Keyword.Type */
+.highlight .m { color: #009999 } /* Literal.Number */
+.highlight .s { color: #d14 } /* Literal.String */
+.highlight .na { color: #008080 } /* Name.Attribute */
+.highlight .nb { color: #0086B3 } /* Name.Builtin */
+.highlight .nc { color: #445588; font-weight: bold } /* Name.Class */
+.highlight .no { color: #008080 } /* Name.Constant */
+.highlight .ni { color: #800080 } /* Name.Entity */
+.highlight .ne { color: #990000; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #990000; font-weight: bold } /* Name.Function */
+.highlight .nn { color: #555555 } /* Name.Namespace */
+.highlight .nt { color: #000080 } /* Name.Tag */
+.highlight .nv { color: #008080 } /* Name.Variable */
+.highlight .ow { font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #009999 } /* Literal.Number.Float */
+.highlight .mh { color: #009999 } /* Literal.Number.Hex */
+.highlight .mi { color: #009999 } /* Literal.Number.Integer */
+.highlight .mo { color: #009999 } /* Literal.Number.Oct */
+.highlight .sb { color: #d14 } /* Literal.String.Backtick */
+.highlight .sc { color: #d14 } /* Literal.String.Char */
+.highlight .sd { color: #d14 } /* Literal.String.Doc */
+.highlight .s2 { color: #d14 } /* Literal.String.Double */
+.highlight .se { color: #d14 } /* Literal.String.Escape */
+.highlight .sh { color: #d14 } /* Literal.String.Heredoc */
+.highlight .si { color: #d14 } /* Literal.String.Interpol */
+.highlight .sx { color: #d14 } /* Literal.String.Other */
+.highlight .sr { color: #009926 } /* Literal.String.Regex */
+.highlight .s1 { color: #d14 } /* Literal.String.Single */
+.highlight .ss { color: #990073 } /* Literal.String.Symbol */
+.highlight .bp { color: #999999 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #008080 } /* Name.Variable.Class */
+.highlight .vg { color: #008080 } /* Name.Variable.Global */
+.highlight .vi { color: #008080 } /* Name.Variable.Instance */
+.highlight .il { color: #009999 } /* Literal.Number.Integer.Long */
+.pl-c {
+    color: #969896;
+}
+
+.pl-c1,.pl-mdh,.pl-mm,.pl-mp,.pl-mr,.pl-s1 .pl-v,.pl-s3,.pl-sc,.pl-sv {
+    color: #0086b3;
+}
+
+.pl-e,.pl-en {
+    color: #795da3;
+}
+
+.pl-s1 .pl-s2,.pl-smi,.pl-smp,.pl-stj,.pl-vo,.pl-vpf {
+    color: #333;
+}
+
+.pl-ent {
+    color: #63a35c;
+}
+
+.pl-k,.pl-s,.pl-st {
+    color: #a71d5d;
+}
+
+.pl-pds,.pl-s1,.pl-s1 .pl-pse .pl-s2,.pl-sr,.pl-sr .pl-cce,.pl-sr .pl-sra,.pl-sr .pl-sre,.pl-src,.pl-v {
+    color: #df5000;
+}
+
+.pl-id {
+    color: #b52a1d;
+}
+
+.pl-ii {
+    background-color: #b52a1d;
+    color: #f8f8f8;
+}
+
+.pl-sr .pl-cce {
+    color: #63a35c;
+    font-weight: bold;
+}
+
+.pl-ml {
+    color: #693a17;
+}
+
+.pl-mh,.pl-mh .pl-en,.pl-ms {
+    color: #1d3e81;
+    font-weight: bold;
+}
+
+.pl-mq {
+    color: #008080;
+}
+
+.pl-mi {
+    color: #333;
+    font-style: italic;
+}
+
+.pl-mb {
+    color: #333;
+    font-weight: bold;
+}
+
+.pl-md,.pl-mdhf {
+    background-color: #ffecec;
+    color: #bd2c00;
+}
+
+.pl-mdht,.pl-mi1 {
+    background-color: #eaffea;
+    color: #55a532;
+}
+
+.pl-mdr {
+    color: #795da3;
+    font-weight: bold;
+}
+
+.pl-mo {
+    color: #1d3e81;
+}
+.task-list {
+padding-left:10px;
+margin-bottom:0;
+}
+
+.task-list li {
+    margin-left: 20px;
+}
+
+.task-list-item {
+list-style-type:none;
+padding-left:10px;
+}
+
+.task-list-item label {
+font-weight:400;
+}
+
+.task-list-item.enabled label {
+cursor:pointer;
+}
+
+.task-list-item+.task-list-item {
+margin-top:3px;
+}
+
+.task-list-item-checkbox {
+display:inline-block;
+margin-left:-20px;
+margin-right:3px;
+vertical-align:1px;
+}
+</style>
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-control" content="no-cache">
+<meta http-equiv="Cache" content="no-cache">
+
+<link href="http://cdn.bootcss.com/highlight.js/8.0/styles/vs.min.css" rel="stylesheet">
+
+<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>  
+
+<script >hljs.initHighlightingOnLoad();</script> 
+
+<script type = "text/javascript" > 
+//create content
+document.addEventListener("DOMContentLoaded", function()
+{
+    toTop();//置顶
+
+    var div1            = document.createElement("div");
+    div1.style.cssText  = "clear:both";
+
+    // create TOC list
+    var outline         = document.createElement("div");
+    outline.setAttribute("id", "outline-list");
+    outline.style.cssText = "border:solid 1px #ccc; background:#eee; min-width:200px;padding:4px 10px;";
+
+    var ele_p           = document.createElement("p");
+    ele_p.style.cssText = "text-align: left; margin: 0;";
+    outline.appendChild(ele_p);
+
+    var ele_span        = document.createElement("span");
+
+    // ele_span.style.cssText = "float: left;";
+    var ele_text        = document.createTextNode("目录");
+    ele_span.appendChild(ele_text);
+
+    var ele_a           = document.createElement("a");
+    ele_a.appendChild(document.createTextNode("[+]"));
+    ele_a.setAttribute("href", "#");
+    ele_a.setAttribute("onclick", "javascript:return openct(this);");
+    ele_a.setAttribute("title", "Click to Open 目录");
+
+    ele_span.appendChild(ele_a);
+    ele_p.appendChild(ele_span);
+
+    var ul_top          = document.createElement("ul"); // 顶级
+    ul_top.style.cssText = "display:none;margin-left:14px;padding-left:14px;line-height:160%;";
+    ul_top.setAttribute("id", "outline_ol");
+    outline.appendChild(ul_top);
+    var div1            = document.createElement("div");
+    div1.style.cssText  = "clear:both";
+
+    document.body.insertBefore(outline, document.body.childNodes[0]);
+
+    // get all the headlines
+    var headers         = document.querySelectorAll('h1,h2,h3,h4,h5,h6');
+
+    if (headers.length < 2)
+        return;
+
+
+    var old_h = 1;
+
+    var ul_array = new Array(7);
+    var ul_current = null;
+    ul_array[1] = ul_top;
+
+    for (var i = 0; i < headers.length; i++)
+    {
+        // get H* and prepare for the ordered list 
+        var header = headers[i];
+
+        //header.setAttribute("id", "t" + i + header.tagName);
+        header.setAttribute("id", header.textContent);
+        var h = parseInt(header.tagName.substr(1), 10);
+
+        // assert  1<=h && h <= 6
+
+        ul_current = 0;
+        if (h < old_h)
+        {
+            for (var j = h+1; j <= 6; j++)
+            {
+                ul_array[j] = null;
+            }
+            ul_current = h;
+        }
+        else if (h == old_h)
+        {
+            ul_current = h;
+        }
+        else if (h > old_h)
+        {
+            ul_current = old_h + 1; /* 是old_h + 1的原因： h如果是old_h + 2 或者 + 3时，
+                                        我们依然按 + 1来做 */
+        }
+
+        if (ul_array[ul_current] == null)
+        {
+            ul_array[ul_current] = document.createElement("ul");
+            if (h>1)
+            {
+                ul_array[h-1].lastChild.appendChild(ul_array[ul_current]);
+            }
+        }
+
+        var elem_li = document.createElement("li");
+        ul_array[ul_current].appendChild(elem_li);
+
+        var a = document.createElement("a");
+
+        // set href for the TOC item 
+        //a.setAttribute("href", "#t" + i + header.tagName);
+        a.setAttribute("href", "#" + header.textContent);
+
+        // TOC item text
+        //a.innerHTML  = "h" + h + header.textContent;
+        a.innerHTML  = header.textContent;
+
+
+        elem_li.appendChild(a);
+
+        old_h = h;
+    }
+});
+function toTop(){
+    var toTop           = document.createElement("div");
+    toTop.style.cssText = "position:fixed;bottom:10px;right:10px;width:20x;height:20px;background:gray;padding:5px;";
+    toTop.innerHTML="^"
+    toTop.setAttribute("id", "toTop");
+    toTop.setAttribute("title", "to top");
+    document.body.insertBefore(toTop, document.body.childNodes[0]);
+
+    // 获取置顶对象
+    var obj = document.getElementById('toTop');
+
+    // 置顶对象点击事件
+    obj.onclick = function() {
+        var timer = setInterval(function() {
+            window.scrollBy(0, -500);
+            if(document.documentElement && document.documentElement.scrollTop) //IE
+            {
+                if(document.documentElement.scrollTop<=0){
+                    clearInterval(timer);
+                }else{
+                    window.scrollBy(0,-500);
+                }
+            }else{ //Chrome不支持documentElement.scrollTop
+                if(document.body.scrollTop<=0){
+                    clearInterval(timer);
+                }else{
+                    window.scrollBy(0,-500);
+                }
+                if (document.body.scrollTop == 0) {
+                    clearInterval(timer);
+                };
+            }
+        }, 2);
+    }
+
+    // 窗口滚动检测
+    //window.onscroll = function() {
+    //    obj.style.display = (document.body.scrollTop >= 300) ? "block" : "none";
+    //}
+}
+// 
+function openct(e)
+{
+    if (e.innerHTML == '[+]')
+    {
+        // createTextNode
+        e.setAttribute('title', 'collapse');
+        e.innerHTML         = '[-]';
+        var             element = document.getElementById("outline_ol");
+
+        element.style.cssText = "margin-left:14px;padding-left:14px;line-height:160%;";
+    }
+    else 
+    {
+        e.setAttribute('title', 'expand');
+        e.innerHTML         = '[+]';
+        var             element = document.getElementById("outline_ol");
+
+        element.style.cssText = "display:none;margin-left:14px;padding-left:14px;line-height:160%;";
+    }
+
+    e.blur();
+    return false;
+}
+
+
+</script>
+
+</head>
+<body>
+<h1 id="1-">1.服务器处理请求的流程：</h1>
+<p>  服务器每次收到请求时，都会为这个请求开辟一个新的线程。<br>  服务器会把客户端的请求数据封装呆request对象中，request就是请求数据的载体。<br>  服务器还会创建response对象，这个对象与客户端连接在一起，它可以用来向客户端发送响应。<br><img src="https://wx1.sinaimg.cn/mw1024/0077Gv1hgy1gha852jw0zj30ps0fh762.jpg" alt=""></p>
+<h1 id="2-response-">2.response:</h1>
+<p>  其类型为HttpServletResponse<br>  servletresponse:与协议无关的类型<br>  httpservletresponse:与http协议相关的类型<br>  发送这样的东西（响应的内容）：</p>
+<pre><code>200 ok   状态码
+Content-Type:text/html;charset=utf-8;  响应头
+...
+
+
+&lt;html&gt;
+.....
+响应体的内容
+它会在浏览器上显示
+....
+
+&lt;/html&gt;
+</code></pre><h2 id="1-">1.状态码:</h2>
+<p>200 成功（2开头的表示成功）<br>302 重定向（3开头的表示中转）<br>404 客户端的错误，一般表示访问路径不存在或者访问路径错误（4开头的表示客户端的错误）<br>500 服务器端的错误 （5开头表示服务器端的错误）<br>sendError(int sc)--&gt;发送错误的状态码，如404，500<br>sendError(int sc ,String msg)--&gt;发送错误的状态码，还可以带一个错误信息<br>setstatus(int sc)--&gt;发送成功的状态码，也可以用来发302</p>
+<pre><code> /**
+ * Servlet implementation class Aservlet
+ * 演示这三个方法
+ * sendError(int sc)--&gt;发送错误的状态码，如404，500
+   sendError(int sc ,String msg)--&gt;发送错误的状态码，还可以带一个错误信息
+   setstatus(int sc)--&gt;发送成功的状态码，也可以用来发302
+ */
+@WebServlet(&quot;/Aservlet&quot;)
+public class Aservlet extends HttpServlet {
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        //404错误
+//        response.sendError(404, &quot;请求的资源存在，但是就是不给你看，哈哈哈！&quot;);
+//        //500错误
+//        response.sendError(500, &quot;服务器的错误，不是我的问题，憨憨！&quot;);
+        //成功
+        response.setStatus(200);
+
+    }
+}
+</code></pre><h2 id="2-">2.响应头:</h2>
+<p>响应头是一个键值对<br>可能存在（一个名字，一个值），也可能存在（一个名字，多个值）<br><strong>setHeader(string name,string value)适应于单值的响应头 </strong><br>例如:</p>
+<pre><code>response.setHeader(&quot;name&quot;,&quot;wanqing77&quot;);
+</code></pre><p><strong>addHeader(string name,string value)适用于多值的响应头</strong><br>例如: </p>
+<pre><code>response.addHeader(&quot;name&quot;,&quot;wanqing11&quot;);
+response.addHeader(&quot;name&quot;,&quot;wanqing22&quot;);
+response.addHeader(&quot;name&quot;,&quot;wanqing33&quot;);
+</code></pre><p><strong>setIntHeader(string name,int value)适用于单值的int类型的响应头</strong></p>
+<pre><code>response.setIntHeader(&quot;name&quot;,888);
+</code></pre><p><strong>addIntHeader(string name,int value)适用于多值的int类型的响应头</strong><br><strong>setDateHeader(string name,long value)适用于单值的毫秒类型的响应头</strong></p>
+<pre><code>response.setDateHeader(&quot;name&quot;,1000*60*60*24);过期时间为24小时
+</code></pre><p><strong>addDateHeader(string name,long value)适用于多值的毫秒类型的响应头</strong></p>
+<h2 id="3-">3.重定向</h2>
+<h3 id="1-">1.重定向时序图</h3>
+<p><img src="https://wx2.sinaimg.cn/mw1024/0077Gv1hly1ghckph22mej30mp0e6q38.jpg" alt=""></p>
+<h3 id="2-">2.重定向操作</h3>
+<p>先创建一个Bservlet，当用户访问Bservlet时，Bservlet会响应302，并重发Loaction头</p>
+<pre><code> /**
+ * 演示重定向
+ * 用户请求Bservlet，然后Bservlet响应302，并给出Location头
+ * Servlet implementation class Bservlet
+ */
+@WebServlet(&quot;/Bservlet&quot;)
+public class Bservlet extends HttpServlet {
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /*
+         * 重定向的两个步骤
+         * 1.设置Location
+         * 2.发送302状态码
+         */
+        response.setHeader(&quot;Location&quot;, &quot;/day10_stateID/Cservlet&quot;);
+        response.setStatus(302);
+        System.out.println(&quot;Bservlet&quot;);
+    }
+}
+</code></pre><p>然后根据Location头定位到Cservlet</p>
+<pre><code>/**浏览器重定向Cservlet
+ * Servlet implementation class Cservlet
+ */
+@WebServlet(&quot;/Cservlet&quot;)
+public class Cservlet extends HttpServlet {
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println(&quot;Cservlet&quot;);
+    }
+}
+</code></pre><h3 id="3-">3.快速重定向</h3>
+<p>sendRedirect(string location)</p>
+<pre><code> /**
+ * 演示重定向
+ * 用户请求Bservlet，然后Bservlet响应302，并给出Location头
+ * Servlet implementation class Bservlet
+ */
+@WebServlet(&quot;/Bservlet&quot;)
+public class Bservlet extends HttpServlet {
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /*
+         * 重定向的两个步骤
+         * 1.设置Location
+         * 2.发送302状态码
+         */
+//        response.setHeader(&quot;Location&quot;, &quot;/day10_stateID/Cservlet&quot;);
+//        response.setStatus(302);
+//        System.out.println(&quot;Bservlet&quot;);
+
+        //使用sendredirect方法快速重定向
+        response.sendRedirect(&quot;http://www.baidu.com&quot;);
+    }
+}
+</code></pre><h2 id="4-">4.定时刷新（定时重定向）</h2>
+<p>先创建一个Dservlet，当用户访问Dservlet时，Dervlet响应头refresh会定时转页面</p>
+<pre><code> /**
+ * 演示定时刷新，用refresh头
+ * Servlet implementation class Dservlet
+ */
+@WebServlet(&quot;/Dservlet&quot;)
+public class Dservlet extends HttpServlet {
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /*
+         * 发送响应体
+         */
+        response.getWriter().print(&quot;测试是不是乱码&quot;);
+        /*
+         * 设置refresh头，定时刷新
+         * 格式为
+         */
+        response.setHeader(&quot;Refresh&quot;,&quot;5;URL=/day10_stateID/Eservlet&quot;);
+    }
+}
+</code></pre><p>转到Eservlet界面</p>
+<pre><code>/**
+ * Servlet implementation class Eservlet
+ */
+@WebServlet(&quot;/Eservlet&quot;)
+public class Eservlet extends HttpServlet {
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.getWriter().print(&quot;不知道是不乱码&quot;);
+    }
+}
+</code></pre><h2 id="5-response-">5.response的两个流</h2>
+<p><strong>ServletOutputStream 用来向客户端发送字节数据<br>PrintWriter  用来向客户端发送字符数据！需要设置编码</strong><br><strong>这两个流不能同时使用</strong></p>
+<pre><code> /**
+ * 演示响应字节数据
+ * Servlet implementation class Fservlet
+ */
+@WebServlet(&quot;/Fservlet&quot;)
+public class Fservlet extends HttpServlet {
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        String string=new String(&quot;hello world&quot;);
+//        byte[] b=string.getBytes();
+//        response.getOutputStream().write(b);
+
+        //将一个图片转化为字节数据
+        String path=&quot;E:/我的壁纸/7.jpg&quot;;
+//        通过打开与实际文件的连接来创建 FileInputStream ，该文件由文件系统中的路径名 name命名。 
+        FileInputStream inputStream=new FileInputStream(path);
+//        读取输入流内容的字节到字节数组中
+        byte[] bs= IOUtils.toByteArray(inputStream);
+        response.getOutputStream().write(bs);
+    }
+}
+</code></pre><h1 id="3-requset">3.requset</h1>
+<p>request封装了客户端所有的请求数据</p>
+<h2 id="1-">1.获取常用信息</h2>
+<p>获取客户端的IP：用request.getremoteaddr()方法可以获取<br>获取请求方式：用request.getmethod()方法</p>
+<h2 id="2-http-">2.获取Http请求头</h2>
+<p>string getHeader(string name);适用于单值头<br>string getIntHeader(string name);适用于单值int类型的请求头<br>Long getDateHeader(string name);适用于单值毫秒类型的请求头<br>使用User-Agent请求头可以查看客户端的信息，案例如下：</p>
+<pre><code> /**
+ * 演示获取客户端的IP地址，请求方式，获取User-Agent,得到客户端的信息（操作系统和浏览器）
+ * Servlet implementation class Aservlet
+ */
+@WebServlet(&quot;/Aservlet&quot;)
+public class Aservlet extends HttpServlet {
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //获取客户端的IP地址
+        String IP=request.getRemoteAddr();
+        System.out.println(&quot;您的IP地址为:&quot;+IP);
+        //获取请求方式
+        System.out.println(&quot;您请求的方式为:&quot;+request.getMethod());
+        //获取客户端信息，用User-Agent请求头完成
+        String userAgent=request.getHeader(&quot;User-Agent&quot;);
+        System.out.println(userAgent);
+
+    }
+}
+</code></pre><h2 id="3-referer-">3.referer请求头的应用</h2>
+<pre><code> /**
+ * 使用referer请求头，来设置防盗链
+ * Servlet implementation class Cservlet
+ */
+@WebServlet(&quot;/Cservlet&quot;)
+public class Cservlet extends HttpServlet {
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String referer=request.getHeader(&quot;referer&quot;);
+        System.out.println(referer);
+        if(referer==null||!referer.contains(&quot;localhost&quot;)) {
+            response.sendRedirect(&quot;http://www.Baidu.com&quot;);
+        }
+        else {
+            System.out.println(&quot;hello&quot;);
+        }
+    }
+}
+</code></pre><p>如果是通过地址栏访问，会直接跳转到百度页面，如果是通过index.html访问，就可以跳转到/Cservlet</p>
+<h2 id="4-url">4.获取请求URl</h2>
+<p>URL:  <a href="http://localhost:8080/day10_request/Aservlet?username=xxxx&amp;password=yyy">http://localhost:8080/day10_request/Aservlet?username=xxxx&amp;password=yyy</a><br>string getScheme():获取Http协议<br>string getServername():获取服务器名：localhost<br>string getServerPort():获取服务器端口：8080<br>string getContextPath():获取项目名：day10_request<br>string getServerPath():获取servlet路径：/Aservlet<br>string getQueryString():获取参数部分：username=xxxx&amp;password=yyy<br>string getRequestURI():获取请求URI：等于项目名加servlet路径，day10_request/Aservlet<br>string getRequestURL():获取请求URL，<a href="http://localhost:8080/day10_request/Aservlet，不包含参数">http://localhost:8080/day10_request/Aservlet，不包含参数</a></p>
+<pre><code> /**
+ * 通过request获取URL得相关方法
+ * Servlet implementation class Bservlet
+ */
+@WebServlet(&quot;/Bservlet&quot;)
+public class Bservlet extends HttpServlet {
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //360浏览器中要加这个响应头才能实现下面得&lt;br/&gt;换行，应该是360浏览器没有设置响应头
+        //而在IE浏览器中则就不用加这个直接换行，IE也没设置响应头，应该是浏览器得差异把。
+        //response.setHeader(&quot;Content-type&quot;, &quot;text/html&quot;);
+
+
+        response.getWriter().print(request.getScheme()+&quot;&lt;br/&gt;&quot;);//获取协议：http
+        response.getWriter().print(request.getServerName()+&quot;&lt;br/&gt;&quot;);//获取服务器名称：localhost
+        response.getWriter().print(request.getServerPort()+&quot;&lt;br/&gt;&quot;);//获取服务器
+        response.getWriter().print(request.getContextPath()+&quot;&lt;br/&gt;&quot;);//获取项目名day10_request
+        response.getWriter().print(request.getServletPath()+&quot;&lt;br/&gt;&quot;);//获取servlet路径/Aservlet
+        response.getWriter().print(request.getQueryString()+&quot;&lt;br/&gt;&quot;);//获取参数
+        response.getWriter().print(request.getRequestURI()+&quot;&lt;br/&gt;&quot;);//获取URI，项目名加servlet路径
+        response.getWriter().print(request.getRequestURL()+&quot;&lt;br/&gt;&quot;);//获取URL
+    }
+
+}
+</code></pre><p>运行结果：<br><img src="https://wxt.sinaimg.cn/mw1024/0077Gv1hgy1ghew6i2x6ij30mz05mt8n.jpg?tags=%5B%5D" alt=""></p>
+<h2 id="5-">5.获取请求参数</h2>
+<p>请求参数是客户端发送给服务器的，有的在表单里面（post）,有的在URL后面（GET）<br>string getparameter(string name):获取指定名称的请求参数值，适用于单值请求参数<br>string[] getparameter(string name):获取指定名称的请求参数值，适用于多值请求参数<br>enumeration<string> getparameterNames()：获取所用请求参数的名称<br>Map<string,string[]>getparameterMap()：获取所有请求参数，以key为参数名，以value为参数值<br>演示测试案例，首先创建一个parameter.html文件：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;演示请求参数&lt;/h1&gt;
+&lt;a href=&quot;/day10_parameter/Aservlet?xxx=XXX&amp;yyy=YYY&quot;&gt;GET请求&lt;/a&gt;
+&lt;form action=&quot;/day10_parameter/Aservlet&quot; method=&quot;post&quot;&gt;
+用户名:&lt;input type=&quot;text&quot; name=&quot;username&quot;&gt;&lt;br&gt;
+密   码:&lt;input type=&quot;password&quot; name=&quot;password&quot;&gt;&lt;br&gt;
+性   别:&lt;input type=&quot;radio&quot; name=&quot;sex&quot; value=&quot;nan&quot;&gt;男
+&lt;input type=&quot;radio&quot; name=&quot;sex&quot; value=&quot;nv&quot;&gt;女
+   &lt;br&gt;
+&lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>然后在创建Aservlet用来访问：</p>
+<pre><code>/**
+ *演示获取请求参数
+ * Servlet implementation class Aservlet
+ */
+@WebServlet(&quot;/Aservlet&quot;)
+public class Aservlet extends HttpServlet {
+
+
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /*
+         * 通过get方法，即通过地址栏访问
+         */
+        response.getWriter().print(request.getParameter(&quot;xxx&quot;));
+        response.getWriter().print(request.getParameter(&quot;yyy&quot;));
+    }
+
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //通过表单访问
+//        String name=request.getParameter(&quot;username&quot;);
+//        String pass=request.getParameter(&quot;password&quot;);
+//        String[] sex=request.getParameterValues(&quot;sex&quot;);
+//        System.out.println(name+&quot;,&quot;+pass+&quot;,&quot;+Arrays.toString(sex));
+
+        /*
+         * 获取所有请参数的名称
+         */
+//        Enumeration enumeration=request.getParameterNames();
+//        while (enumeration.hasMoreElements()) {
+//            System.out.println(enumeration.nextElement());
+//            
+//        }
+        //使用map来获取所用请求参数
+        Map&lt;String,String[]&gt; map=request.getParameterMap();
+        for(String name:map.keySet()) {
+            String[] values=map.get(name);
+            System.out.println(name+&quot;=&quot;+Arrays.toString(values));
+        }
+
+    }
+}
+</code></pre><p><img src="https://wx1.sinaimg.cn/mw1024/0077Gv1hgy1gheylma3jlj30k203smxa.jpg" alt=""></p>
+<h2 id="6-">6.请求转发和请求包含</h2>
+<p>requestDispatcher rd=request.getrequestDispatcher(&quot;/MYservlet&quot;)<br>使用request获取requestDispatcher对象，方法的参数是被转发或被包含的servlet路径（&quot;/servlet&quot;）<br>请求转发：rd.forward(request,response)<br>请求包含：rd.include(request,response)<br><img src="https://wx2.sinaimg.cn/mw1024/0077Gv1hgy1ghfvri9uf3j30og0f6wex.jpg" alt=""><br>有时一个请求需要多个servlet协作才能完成，所以需要从一个servlet跳转到另一个servlet<br>一个请求跨多个servlet，需要使用转发和包含。<br>请求转发：由下一个servlet完成响应体，当前servlet可以设置响应头（留头不留体）<br>请求包含：由两个servlet共同完成响应体（都留）<br>无论是请求转发和请求包含，都在一个请求范围内，使用同一个request和response</p>
+<h3 id="1-">1.请求转发</h3>
+<p>访问Aservlet，Aservlet完成不了这项工作，就交给Bservlet来完成，Aservlet就可以啥都不用干（意思是不用设置响应体）<br>Aservlet：  </p>
+<pre><code> /**
+ * 演示请求转发
+ * Servlet implementation class Aservlet
+ */
+@WebServlet(&quot;/Aservlet&quot;)
+public class Aservlet extends HttpServlet {
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println(&quot;Aservlet&quot;);
+        //设置一个响应头(无用)
+        response.setHeader(&quot;aaa&quot;, &quot;AAA&quot;);
+        //设置响应体
+        response.getWriter().print(&quot;hello this is Aservlet&quot;);
+        //请求转发
+        request.getRequestDispatcher(&quot;/Bservlet&quot;).forward(request, response);
+
+    }
+} 
+</code></pre><p>Bservlet：  </p>
+<pre><code>/**
+ * Servlet implementation class Bservlet
+ */
+@WebServlet(&quot;/Bservlet&quot;)
+public class Bservlet extends HttpServlet {
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println(&quot;/Bservlet&quot;);
+        response.getWriter().print(&quot;hello this is Bservlet&quot;);
+
+    }
+}
+</code></pre><p><img src="https://wx2.sinaimg.cn/mw1024/0077Gv1hgy1ghg4tz3xzkj30ik03aaa8.jpg" alt=""><br><strong>我们可以看到地址栏访问的是Aservlet，但是输出的是Bservlet的响应内容，我们在Aservlet设置的响应体内容根本没有用这就是所说的留头不留体</strong></p>
+<h3 id="2-">2.请求包含</h3>
+<p>访问Cservlet，Cservlet根本一个人难搞定，就叫Dservlet一起搞<br>Cservlet：</p>
+<pre><code> /**
+ * 演示请求包含
+ * Servlet implementation class Cservlet
+ */
+@WebServlet(&quot;/Cservlet&quot;)
+public class Cservlet extends HttpServlet {
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println(&quot;Cservlet&quot;);
+        //设置响应头
+        response.setHeader(&quot;aaa&quot;, &quot;bbb&quot;);
+        //设置响应体
+        response.getWriter().print(&quot;hello this is Cservlet&quot;);
+        //请求包含
+        request.getRequestDispatcher(&quot;/Dservlet&quot;).include(request, response);
+
+    }
+}
+</code></pre><p>Dservlet：</p>
+<pre><code> /**
+ * Servlet implementation class Dservlet
+ */
+@WebServlet(&quot;/Dservlet&quot;)
+public class Dservlet extends HttpServlet {
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println(&quot;Dservlet&quot;);
+        response.getWriter().print(&quot;hello this is Dservlet&quot;);
+    }
+}
+</code></pre><p><img src="https://wx2.sinaimg.cn/mw1024/0077Gv1hgy1ghg4tz3ntrj30ik03374g.jpg" alt=""><br><strong>我们可以看到既有Cservlet响应体的内容，又有Dservlet响应体的内容（这是两个人一起完成的，所以都留）</strong></p>
+<h2 id="7-request-">7.request域</h2>
+<p><img src="https://wx4.sinaimg.cn/mw1024/0077Gv1hgy1ghhdfoxymjj30x40ggq3q.jpg" alt=""></p>
+<p>servlet中有三大域对象：request，session，application（所有域对象）都有这三个方法<br>1.void setAttribute(string name,object value);这个用来保存数据<br>2.object getAttribute(string name);用来读取数据<br>3.void removeAttribute(string name):删除数据<br>同一请求内（即请求转发或者请求包含）使用request.setAttribute(),request.getAttribute()来传递值。<br>前一个servlet用setAttribute()保存，后一个servlet用getAttribute()读取</p>
+<h2 id="8-">8.请求转发和重定向的区别</h2>
+<p>1.请求转发是一个请求一次响应，而重定向是两个请求两个响应<br>2.请求转发它的地址栏不会发生变化，而重定向会显示后一个请求的地址<br>3.请求转发只能转发到同项目的servlet中，而重定向不仅能重定向到本项目的servlet，还能定向到其他的项目，比如重定向到（百度）<br>4.请求转发是服务器端的行为，只需要给出转发的servlet路径，而重定向需要给出requestURI，即包含项目名<br>5.请求转发的效率比重定向的效率高，因为请求转发只有一个请求。如果需要地址栏发生变化，则必须用到重定向，如果要在下一个servlet获取request域中的数据，则必须用到请求转发<br> Aservlet:</p>
+<pre><code> /**
+ * 演示请求转发
+ * 演示request域对象
+ * Servlet implementation class Aservlet
+ */
+@WebServlet(&quot;/Aservlet&quot;)
+public class Aservlet extends HttpServlet {
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println(&quot;Aservlet&quot;);
+        //设置一个响应头(无用)
+        response.setHeader(&quot;aaa&quot;, &quot;AAA&quot;);
+        //设置响应体
+        response.getWriter().print(&quot;hello this is Aservlet&quot;);
+        //向request域中添加数据
+        request.setAttribute(&quot;username&quot;, &quot;wanqing&quot;);
+        //请求转发
+        request.getRequestDispatcher(&quot;/Bservlet&quot;).forward(request, response);
+
+    }
+}
+</code></pre><p>Bservlet:</p>
+<pre><code>/**
+ * Servlet implementation class Bservlet
+ */
+@WebServlet(&quot;/Bservlet&quot;)
+public class Bservlet extends HttpServlet {
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //读取域中的数据
+        System.out.println(request.getAttribute(&quot;username&quot;));
+        System.out.println(&quot;/Bservlet&quot;);
+        response.getWriter().print(&quot;hello this is Bservlet&quot;);
+
+    }
+}
+</code></pre><h1 id="4-">4.编码</h1>
+<p>常见字符编码：iso-8859-1(不支持中文)，gbk（中国国际码）utf-8（万国码，支持全世界的编码，所以用它）</p>
+<h2 id="1-">1.响应编码</h2>
+<p>1.在使用response.getWriter()向客户端发送字符数据时，如果在之前没有设置编码，则默认使用iso,因为iso不支持中文，所以输出中文时一定乱码<br>2.在使用response.getWriter()之前，可以通过使用response.serCharaceterEncoding(&quot;utf-8&quot;)来设置响应编码，如果浏览器是使用utf-8编码，则不会乱码，否则也会乱码<br>3.在使用response.getWriter()之前可以使用response.setHeader(&quot;Content-type&quot;,&quot;text/html;charset=utf-8&quot;)来设置响应头，这个头给了浏览器，浏览器就知道用什么编码，所以这个就不会乱码<br>4.设置编码的快捷方法，response.setContentType(&quot;text/html;charset=utf-8&quot;)<br><img src="https://wx1.sinaimg.cn/mw1024/0077Gv1hgy1ghi58zij68j30xs0i9adc.jpg" alt=""></p>
+<h2 id="2-">2.请求编码</h2>
+<p>1.post编码<br><img src="https://wx1.sinaimg.cn/mw1024/0077Gv1hgy1ghibt4gpxgj310b0dxwg5.jpg" alt=""><br>2.get编码<br><img src="https://wx2.sinaimg.cn/mw1024/0077Gv1hgy1ghibq6nn6zj30qy0f6gnp.jpg" alt=""><br>演示请求编码：<br>需要一个index.html</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;form action=&quot;/day10_Encode/Aservlet&quot; method=&quot;post&quot;&gt;
+用户名：&lt;input type=&quot;text&quot; name=&quot;username&quot;&gt;&lt;br&gt;
+&lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;
+&lt;hr/&gt;
+&lt;a href=&quot;/day10_Encode/Aservlet?username=张三&quot;&gt;GET&lt;/a&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>Aservlet</p>
+<pre><code> /**
+ * 演示request请求编码
+ * Servlet implementation class Aservlet
+ */
+@WebServlet(&quot;/Aservlet&quot;)
+public class Aservlet extends HttpServlet {
+
+    /**
+     * get请求编码
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /*
+         * 由于tomcat8.0以上都是默认utf-8编码，所以注释内容不需要，要是tomcat为7则需要
+         */
+        //1.先获取使用iso的错误字符串
+        //2.回退，用utf-8重编
+        String name=request.getParameter(&quot;username&quot;);
+//        byte[] bs=name.getBytes(&quot;iso-8859-1&quot;);
+//        name=new String(bs,&quot;utf-8&quot;);
+
+        System.out.println(name);
+
+    }
+
+    /*post请求编码
+     * 
+     * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //1.在获取参数之前，要调用request.setcharacterEncoding(&quot;utf-8&quot;)，将处理参数的编码编程utf-8
+        request.setCharacterEncoding(&quot;utf-8&quot;);
+        //2.使用getparameter()来获取参数
+        System.out.println(request.getParameter(&quot;username&quot;));
+    }
+
+}
+</code></pre>
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
